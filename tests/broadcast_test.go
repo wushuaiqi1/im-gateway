@@ -3,6 +3,7 @@ package tests
 import (
 	"fmt"
 	"im/broadcast"
+	"im/higo"
 	"net/http"
 	"testing"
 )
@@ -10,7 +11,8 @@ import (
 func TestAllUserAPi(t *testing.T) {
 	fmt.Println("run broadcast project demo~~~")
 	http.HandleFunc("/broadcast", broadcast.AllUserApi)
-	err := http.ListenAndServe("localhost:8001", nil)
+	http.HandleFunc("/higo", higo.Hello)
+	err := http.ListenAndServe(":18081", nil)
 	if err != nil {
 		return
 	}
